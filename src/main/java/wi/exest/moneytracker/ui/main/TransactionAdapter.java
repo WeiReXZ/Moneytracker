@@ -16,7 +16,6 @@ import wi.exest.moneytracker.util.Constants;
 
 public class TransactionAdapter extends ListAdapter<TransactionEntity, TransactionAdapter.TransactionViewHolder> {
 
-    // Интерфейс для обработки кликов
     public interface OnItemClickListener {
         void onItemClick(TransactionEntity transaction);
         void onItemLongClick(TransactionEntity transaction);
@@ -24,13 +23,11 @@ public class TransactionAdapter extends ListAdapter<TransactionEntity, Transacti
 
     private final OnItemClickListener listener;
 
-    // Конструктор
     public TransactionAdapter(OnItemClickListener listener) {
         super(DIFF_CALLBACK);
         this.listener = listener;
     }
 
-    // DiffUtil для оптимизации обновлений
     public static final DiffUtil.ItemCallback<TransactionEntity> DIFF_CALLBACK = new DiffUtil.ItemCallback<TransactionEntity>() {
         @Override
         public boolean areItemsTheSame(@NonNull TransactionEntity oldItem, @NonNull TransactionEntity newItem) {
@@ -43,7 +40,6 @@ public class TransactionAdapter extends ListAdapter<TransactionEntity, Transacti
         }
     };
 
-    // ViewHolder
     static class TransactionViewHolder extends RecyclerView.ViewHolder {
         TextView amountText;
         TextView categoryText;
@@ -54,19 +50,16 @@ public class TransactionAdapter extends ListAdapter<TransactionEntity, Transacti
             categoryText = itemView.findViewById(R.id.categoryText);
         }
 
-        // Метод для привязки данных и обработчиков событий
         public void bind(TransactionEntity transaction, OnItemClickListener listener) {
             String sign = transaction.getType().equals(Constants.TYPE_INCOME) ? "+" : "-";
             amountText.setText(sign + transaction.getAmount() + " ₽");
             categoryText.setText(transaction.getCategory());
 
-            // Обработка клика
             itemView.setOnClickListener(v -> listener.onItemClick(transaction));
 
-            // Обработка долгого клика
             itemView.setOnLongClickListener(v -> {
                 listener.onItemLongClick(transaction);
-                return true; // true — событие обработано
+                return true;
             });
         }
     }
