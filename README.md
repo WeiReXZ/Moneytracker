@@ -76,7 +76,7 @@ moneytracker/
 Шаги:
 1. Клонируйте репозиторий:
    ```bash
-   git clone https://github.com/ваше-имя/moneytracker.git
+   https://github.com/WeiReXZ/Moneytracker.git
 
 
 2. Откройте проект в Android Studio
