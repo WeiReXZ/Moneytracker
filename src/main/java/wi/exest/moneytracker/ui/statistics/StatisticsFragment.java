@@ -56,13 +56,11 @@ public class StatisticsFragment extends Fragment {
 
         double balance = income - expense;
 
-        // Обновляем текст
         incomeText.setText("Доходы: " + String.format("%.2f ₽", income));
         expenseText.setText("Расходы: " + String.format("%.2f ₽", expense));
         balanceText.setText("Баланс: " + String.format("%.2f ₽", balance));
 
-        // Обновляем полосы
-        int maxBarWidth = getResources().getDisplayMetrics().widthPixels - 100; // Максимальная ширина
+        int maxBarWidth = getResources().getDisplayMetrics().widthPixels - 100;
 
         float incomeBarWidth = (float) (maxBarWidth * (income / (income + expense + 0.1)));
         float expenseBarWidth = (float) (maxBarWidth * (expense / (income + expense + 0.1)));
