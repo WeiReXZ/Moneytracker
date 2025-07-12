@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="purple_200">#FF37006E</color>
+    <color name="purple_500">#FF37006E</color>
+    <color name="surface">#FFFBFE</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">moneytracker</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <style name="Base.Theme.Moneytracker" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.MoneyTracker" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryContainer">@color/purple_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimaryContainer">@color/black</item>
+        <item name="colorSurface">@color/surface</item>
+    </style>
+    <style name="Theme.Moneytracker" parent="Base.Theme.Moneytracker"/>
+</resources>
