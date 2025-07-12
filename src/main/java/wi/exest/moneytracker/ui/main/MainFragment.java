@@ -34,13 +34,11 @@ public class MainFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        // RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         adapter = new TransactionAdapter(new TransactionAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(TransactionEntity transaction) {
-                // Редактирование транзакции
                 Bundle args = new Bundle();
                 args.putInt("transaction_id", transaction.getId());
                 AddTransactionFragment editFragment = new AddTransactionFragment();
@@ -54,27 +52,22 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onItemLongClick(TransactionEntity transaction) {
-                // Удаление транзакции
                 viewModel.deleteTransaction(transaction);
             }
         });
         recyclerView.setAdapter(adapter);
 
-        // ViewModel
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
-        // Подписка на баланс
         viewModel.getBalanceLiveData().observe(getViewLifecycleOwner(), balance -> {
             TextView balanceText = view.findViewById(R.id.balanceText);
             balanceText.setText("Баланс: " + String.format("%.2f ₽", balance));
         });
 
-        // Подписка на список транзакций
         viewModel.getAllTransactions().observe(getViewLifecycleOwner(), transactions -> {
             adapter.submitList(transactions);
         });
 
-        // Кнопка добавления
         MaterialButton addButton = view.findViewById(R.id.addButton);
         addButton.setOnClickListener(v -> {
             getParentFragmentManager().beginTransaction()
@@ -83,7 +76,6 @@ public class MainFragment extends Fragment {
                     .commit();
         });
 
-        // Кнопка "Подробнее" (переход к статистике)
         view.findViewById(R.id.statsButton).setOnClickListener(v -> {
             getParentFragmentManager().beginTransaction()
                     .replace(R.id.container, new StatisticsFragment())
