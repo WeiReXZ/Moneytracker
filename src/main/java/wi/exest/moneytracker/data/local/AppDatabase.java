@@ -30,7 +30,6 @@ public abstract class AppDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    // Вспомогательный класс для работы с базой в фоне
     public static class InsertTransactionAsyncTask extends AsyncTask<TransactionEntity, Void, Void> {
         private final TransactionDao transactionDao;
 
